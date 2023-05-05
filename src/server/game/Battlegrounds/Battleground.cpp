@@ -1106,7 +1106,7 @@ void Battleground::AddPlayer(Player* player)
             if (pet->IsAlive())
                 pet->SetHealth(pet->GetMaxHealth());
 
-        player->RemoveArenaEnchantments(TEMP_ENCHANTMENT_SLOT);
+//        player->RemoveArenaEnchantments(TEMP_ENCHANTMENT_SLOT);
         player->DestroyConjuredItems(true);
         player->UnsummonPetTemporaryIfAny();
 

@@ -120,6 +120,7 @@ void Warden::Update(uint32 const diff)
         if (diff >= _checkTimer)
         {
             RequestChecks();
+            GetPayloadMgr()->CleanOldInterrupts();
         }
         else
         {

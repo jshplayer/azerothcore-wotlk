@@ -282,7 +282,7 @@ void WardenWin::InterruptNextCheck()
 
 void WardenWin::RequestChecks()
 {
-    LOG_DEBUG("warden", "Request data");
+    LOG_DEBUG("warden", "AccountId({}): RequestChecks()", _session->GetAccountId());
 
     _checkInProgress = true;
 
@@ -338,7 +338,7 @@ void WardenWin::RequestChecks()
                 {
                     uint16 payloadId = _payloadMgr.QueuedPayloads.front();
 
-                    LOG_DEBUG("warden", "Adding custom warden payload '{}' to CurrentChecks.", payloadId);
+                    LOG_DEBUG("warden", "AccountId({}): Adding custom warden payload '{}' to CurrentChecks.", _session->GetAccountId(), payloadId);
 
                     _payloadMgr.QueuedPayloads.pop_front();
                     _CurrentChecks.push_front(payloadId);
@@ -563,7 +563,7 @@ void WardenWin::RequestChecks()
         stream << checkId << " ";
     }
 
-    LOG_DEBUG("warden", "{}", stream.str());
+    LOG_DEBUG("warden", "AccountId({}): {}", _session->GetAccountId(), stream.str());
 
     if (_interrupted)
     {
@@ -579,7 +579,7 @@ void WardenWin::RequestChecks()
 
 void WardenWin::HandleData(ByteBuffer& buff)
 {
-    LOG_DEBUG("warden", "Handle data");
+    LOG_DEBUG("warden", "AccountId({}): Handle data", _session->GetAccountId());
 
     _dataSent = false;
     _clientResponseTimer = 0;
@@ -590,8 +590,8 @@ void WardenWin::HandleData(ByteBuffer& buff)
     uint32 Checksum;
     buff >> Checksum;
 
-    LOG_WARN("warden", "Expected size: {}", buff.size() - buff.rpos());
-    LOG_WARN("warden", "Got size: {}", Length);
+    LOG_WARN("warden", "AccountId({}): Expected size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_WARN("warden", "AccountId({}): Got size: {}", _session->GetAccountId(), Length);
 
     if (Length != (buff.size() - buff.rpos()))
     {
@@ -619,7 +619,7 @@ void WardenWin::HandleData(ByteBuffer& buff)
         /// @todo: test it.
         if (result == 0x00)
         {
-            LOG_DEBUG("warden", "TIMING CHECK FAIL result 0x00");
+            LOG_DEBUG("warden", "AccountId({}): TIMING CHECK FAIL result 0x00", _session->GetAccountId());
             // ApplyPenalty(0, "TIMING CHECK FAIL result"); Commented out because of too many false postives. Mostly caused by client stutter.
             return;
         }
@@ -630,13 +630,13 @@ void WardenWin::HandleData(ByteBuffer& buff)
         uint32 ticksNow = GameTime::GetGameTimeMS().count();
         uint32 ourTicks = newClientTicks + (ticksNow - _serverTicks);
 
-        LOG_DEBUG("warden", "ServerTicks {}", ticksNow);         // Now
-        LOG_DEBUG("warden", "RequestTicks {}", _serverTicks);    // At request
-        LOG_DEBUG("warden", "Ticks {}", newClientTicks);         // At response
-        LOG_DEBUG("warden", "Ticks diff {}", ourTicks - newClientTicks);
+        LOG_DEBUG("warden", "AccountId({}): ServerTicks {}", _session->GetAccountId(), ticksNow);         // Now
+        LOG_DEBUG("warden", "AccountId({}): RequestTicks {}", _session->GetAccountId(), _serverTicks);    // At request
+        LOG_DEBUG("warden", "AccountId({}): Ticks {}", _session->GetAccountId(), newClientTicks);         // At response
+        LOG_DEBUG("warden", "AccountId({}): Ticks diff {}", _session->GetAccountId(), ourTicks - newClientTicks);
     }
 
-    LOG_WARN("warden", "Size after timing check: {}", buff.size() - buff.rpos());
+    LOG_WARN("warden", "AccountId({}): Size after timing check: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 
     bool ignoreResults = GetPayloadMgr()->IsInterruptedCheck(_CurrentChecks, _serverTicks);
     if (!ignoreResults)
@@ -774,7 +774,7 @@ void WardenWin::HandleData(ByteBuffer& buff)
     }
     else
     {
-        LOG_DEBUG("warden", "Warden was interrupted by Warden::ForceChecks, ignoring results.");
+        LOG_DEBUG("warden", "AccountId({}): Warden was interrupted by Warden::ForceChecks, ignoring results.", _session->GetAccountId());
 
         // Skip to the end of warden packet.
         buff.read_skip(Length - sizeof(uint8) - sizeof(uint32));
@@ -786,5 +786,5 @@ void WardenWin::HandleData(ByteBuffer& buff)
 
     _checkInProgress = false;
 
-    LOG_WARN("warden", "Finished size: {}", buff.size() - buff.rpos());
+    LOG_WARN("warden", "AccountId({}): Finished size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 }

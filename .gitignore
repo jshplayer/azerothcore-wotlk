@@ -98,3 +98,23 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
+
+!modules/BreakingNewsOverride
+!modules/DungeonRespawn
+!modules/FFAFix
+!modules/HardMode
+!modules/mod-ah-bot
+!modules/mod-anticheat
+!modules/mod-autobalance
+!modules/mod-bounty-hunter
+!modules/mod-congrats-on-level
+!modules/mod-money-for-kills
+!modules/mod-reagent-bank
+!modules/mod-solo-lfg
+!modules/mod-starter-guild
+!modules/mod-transmog
+!modules/mod-who-logged
+!modules/ReusablePotion
+!modules/StatBooster
+!modules/StatBoosterReroller
+

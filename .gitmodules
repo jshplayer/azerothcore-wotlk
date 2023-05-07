@@ -1,3 +1,57 @@
 [submodule "deps/git-subrepo"]
 	path = deps/git-subrepo
 	url = https://github.com/ingydotnet/git-subrepo.git
+[submodule "modules/BreakingNewsOverride"]
+	path = modules/BreakingNewsOverride
+	url = https://github.com/oceanicwar/BreakingNewsOverride
+[submodule "modules/DungeonRespawn"]
+	path = modules/DungeonRespawn
+	url = https://github.com/oceanicwar/DungeonRespawn
+[submodule "modules/FFAFix"]
+	path = modules/FFAFix
+	url = https://github.com/oceanicwar/FFAFix
+[submodule "modules/HardMode"]
+	path = modules/HardMode
+	url = https://github.com/oceanicwar/HardMode
+[submodule "modules/mod-ah-bot"]
+	path = modules/mod-ah-bot
+	url = https://github.com/oceanicwar/mod-ah-bot
+[submodule "modules/mod-anticheat"]
+	path = modules/mod-anticheat
+	url = https://github.com/oceanicwar/mod-anticheat
+[submodule "modules/mod-autobalance"]
+	path = modules/mod-autobalance
+	url = https://github.com/oceanicwar/mod-autobalance
+[submodule "modules/mod-bounty-hunter"]
+	path = modules/mod-bounty-hunter
+	url = https://github.com/oceanicwar/mod-bounty-hunter
+[submodule "modules/mod-congrats-on-level"]
+	path = modules/mod-congrats-on-level
+	url = https://github.com/oceanicwar/mod-congrats-on-level
+[submodule "modules/mod-money-for-kills"]
+	path = modules/mod-money-for-kills
+	url = https://github.com/oceanicwar/mod-money-for-kills
+[submodule "modules/mod-reagent-bank"]
+	path = modules/mod-reagent-bank
+	url = https://github.com/oceanicwar/mod-reagent-bank
+[submodule "modules/mod-solo-lfg"]
+	path = modules/mod-solo-lfg
+	url = https://github.com/oceanicwar/mod-solo-lfg
+[submodule "modules/mod-starter-guild"]
+	path = modules/mod-starter-guild
+	url = https://github.com/oceanicwar/mod-starter-guild
+[submodule "modules/mod-transmog"]
+	path = modules/mod-transmog
+	url = https://github.com/oceanicwar/mod-transmog
+[submodule "modules/mod-who-logged"]
+	path = modules/mod-who-logged
+	url = https://github.com/oceanicwar/mod-who-logged
+[submodule "modules/ReusablePotion"]
+	path = modules/ReusablePotion
+	url = https://github.com/oceanicwar/ReusablePotion
+[submodule "modules/StatBooster"]
+	path = modules/StatBooster
+	url = https://github.com/oceanicwar/StatBooster
+[submodule "modules/StatBoosterReroller"]
+	path = modules/StatBoosterReroller
+	url = https://github.com/oceanicwar/StatBoosterReroller

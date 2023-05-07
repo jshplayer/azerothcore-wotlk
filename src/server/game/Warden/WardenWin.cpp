@@ -592,8 +592,8 @@ void WardenWin::HandleData(ByteBuffer& buff)
     uint32 Checksum;
     buff >> Checksum;
 
-    LOG_WARN("warden", "AccountId({}): Expected size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
-    LOG_WARN("warden", "AccountId({}): Got size: {}", _session->GetAccountId(), Length);
+    LOG_DEBUG("warden", "AccountId({}): Expected size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Got size: {}", _session->GetAccountId(), Length);
 
     if (Length != (buff.size() - buff.rpos()))
     {
@@ -638,11 +638,9 @@ void WardenWin::HandleData(ByteBuffer& buff)
         LOG_DEBUG("warden", "AccountId({}): Ticks diff {}", _session->GetAccountId(), ourTicks - newClientTicks);
     }
 
-    LOG_WARN("warden", "AccountId({}): Size after timing check: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Size after timing check: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 
-    std::string checkSig = GetPayloadMgr()->GetCheckListSignature(_CurrentChecks);
-    LOG_INFO("warden", "Check Time: {}, Check Sig: {}", _serverTicks, checkSig);
-    bool isInterruptedCheck = GetPayloadMgr()->IsInterruptedCheck(_CurrentChecks, _serverTicks);
+    bool isInterruptedCheck = GetPayloadMgr()->IsInterruptedCheck(_CurrentChecks, _serverTicks) || _interrupted;
 
     if (isInterruptedCheck)
     {
@@ -791,5 +789,5 @@ void WardenWin::HandleData(ByteBuffer& buff)
 
     _checkInProgress = false;
 
-    LOG_WARN("warden", "AccountId({}): Finished size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Finished size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 }

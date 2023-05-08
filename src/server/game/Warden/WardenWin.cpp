@@ -573,6 +573,8 @@ void WardenWin::RequestChecks()
 
         GetPayloadMgr()->InterruptedChecks.push_back(checkInfo);
 
+        LOG_DEBUG("warden", "AccountId({}): Added checkids to interrupt list.", _session->GetAccountId());
+
         _interrupted = false;
     }
 }
@@ -590,8 +592,8 @@ void WardenWin::HandleData(ByteBuffer& buff)
     uint32 Checksum;
     buff >> Checksum;
 
-    LOG_WARN("warden", "AccountId({}): Expected size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
-    LOG_WARN("warden", "AccountId({}): Got size: {}", _session->GetAccountId(), Length);
+    LOG_DEBUG("warden", "AccountId({}): Expected size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Got size: {}", _session->GetAccountId(), Length);
 
     if (Length != (buff.size() - buff.rpos()))
     {
@@ -636,10 +638,18 @@ void WardenWin::HandleData(ByteBuffer& buff)
         LOG_DEBUG("warden", "AccountId({}): Ticks diff {}", _session->GetAccountId(), ourTicks - newClientTicks);
     }
 
-    LOG_WARN("warden", "AccountId({}): Size after timing check: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Size after timing check: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 
-    bool ignoreResults = GetPayloadMgr()->IsInterruptedCheck(_CurrentChecks, _serverTicks);
-    if (!ignoreResults)
+    bool isInterruptedCheck = GetPayloadMgr()->IsInterruptedCheck(_CurrentChecks, _serverTicks) || _interrupted;
+
+    if (isInterruptedCheck)
+    {
+        LOG_DEBUG("warden", "AccountId({}): Warden was interrupted by Warden::ForceChecks, ignoring results.", _session->GetAccountId());
+
+        // Skip to the end of warden packet.
+        buff.read_skip(Length - sizeof(uint8) - sizeof(uint32));
+    }
+    else
     {
         uint16 checkFailed = 0;
 
@@ -772,13 +782,6 @@ void WardenWin::HandleData(ByteBuffer& buff)
             ApplyPenalty(checkFailed, "");
         }
     }
-    else
-    {
-        LOG_DEBUG("warden", "AccountId({}): Warden was interrupted by Warden::ForceChecks, ignoring results.", _session->GetAccountId());
-
-        // Skip to the end of warden packet.
-        buff.read_skip(Length - sizeof(uint8) - sizeof(uint32));
-    }
 
     // Set hold off timer, minimum timer should at least be 1 second
     uint32 const holdOff = sWorld->getIntConfig(CONFIG_WARDEN_CLIENT_CHECK_HOLDOFF);
@@ -786,5 +789,5 @@ void WardenWin::HandleData(ByteBuffer& buff)
 
     _checkInProgress = false;
 
-    LOG_WARN("warden", "AccountId({}): Finished size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
+    LOG_DEBUG("warden", "AccountId({}): Finished size: {}", _session->GetAccountId(), buff.size() - buff.rpos());
 }

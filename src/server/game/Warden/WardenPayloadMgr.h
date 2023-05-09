@@ -156,7 +156,7 @@ public:
     /**
     * @brief The cleanup time for old interrupts in seconds.
     */
-    static uint32 constexpr WardenInterruptCleanTime = 15;
+    static uint32 constexpr WardenInterruptCleanTime = 30;
 
     /**
     * @brief The list of currently queued payload ids to be sent through Warden.

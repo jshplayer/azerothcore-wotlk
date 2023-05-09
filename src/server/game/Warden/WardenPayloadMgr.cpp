@@ -175,10 +175,12 @@ bool WardenPayloadMgr::IsInterruptedCheck(std::list<uint16>& checkList, uint32 s
         if (serverTicks == checkInfo.CheckTime &&
             checkSig == checkInfo.Signature)
         {
+            LOG_DEBUG("warden", "IsInterruptedCheck:True");
             return true;
         }
     }
 
+    LOG_DEBUG("warden", "IsInterruptedCheck:False");
     return false;
 }
 

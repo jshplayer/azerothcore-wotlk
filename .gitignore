@@ -98,6 +98,3 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
-
-!modules/*
-

@@ -55,3 +55,6 @@
 [submodule "modules/StatBoosterReroller"]
 	path = modules/StatBoosterReroller
 	url = https://github.com/oceanicwar/StatBoosterReroller
+[submodule "modules/mod-world-chat"]
+	path = modules/mod-world-chat
+	url = https://github.com/oceanicwar/mod-world-chat

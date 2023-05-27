@@ -1652,14 +1652,16 @@ public:
 
             if (Aura* grow = target->GetAura(uint32(GetEffectValue())))
             {
-                if (grow->GetStackAmount() <= 4)
+                if (grow->GetStackAmount() <= 3)
                 {
                     target->RemoveAurasDueToSpell(SPELL_GROW_STACKER);
                     target->RemoveAura(grow);
                     target->DespawnOrUnsummon(1);
                 }
                 else
-                    grow->ModStackAmount(-4);
+				{
+                    grow->ModStackAmount(-3);
+				}
             }
         }
 

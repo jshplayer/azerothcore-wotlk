@@ -58,3 +58,6 @@
 [submodule "modules/mod-world-chat"]
 	path = modules/mod-world-chat
 	url = https://github.com/oceanicwar/mod-world-chat
+[submodule "modules/mod-reward-played-time"]
+	path = modules/mod-reward-played-time
+	url = https://github.com/oceanicwar/mod-reward-played-time

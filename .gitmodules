@@ -61,3 +61,9 @@
 [submodule "modules/mod-reward-played-time"]
 	path = modules/mod-reward-played-time
 	url = https://github.com/oceanicwar/mod-reward-played-time
+[submodule "modules/modules/mod-custom-login"]
+	path = modules/modules/mod-custom-login
+	url = https://github.com/oceanicwar/mod-custom-login
+[submodule "modules/mod-custom-login"]
+	path = modules/mod-custom-login
+	url = https://github.com/oceanicwar/mod-custom-login

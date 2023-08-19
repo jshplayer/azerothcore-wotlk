@@ -67,3 +67,6 @@
 [submodule "modules/mod-custom-login"]
 	path = modules/mod-custom-login
 	url = https://github.com/oceanicwar/mod-custom-login
+[submodule "modules/mod-morph-all-players"]
+	path = modules/mod-morph-all-players
+	url = https://github.com/oceanicwar/mod-morph-all-players

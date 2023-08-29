@@ -58,9 +58,6 @@
 [submodule "modules/mod-world-chat"]
 	path = modules/mod-world-chat
 	url = https://github.com/oceanicwar/mod-world-chat
-[submodule "modules/mod-reward-played-time"]
-	path = modules/mod-reward-played-time
-	url = https://github.com/oceanicwar/mod-reward-played-time
 [submodule "modules/modules/mod-custom-login"]
 	path = modules/modules/mod-custom-login
 	url = https://github.com/oceanicwar/mod-custom-login
@@ -70,3 +67,6 @@
 [submodule "modules/mod-morph-all-players"]
 	path = modules/mod-morph-all-players
 	url = https://github.com/oceanicwar/mod-morph-all-players
+[submodule "modules/OverAchiever"]
+	path = modules/OverAchiever
+	url = https://github.com/oceanicwar/OverAchiever

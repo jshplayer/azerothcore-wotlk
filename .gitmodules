@@ -70,3 +70,12 @@
 [submodule "modules/OverAchiever"]
 	path = modules/OverAchiever
 	url = https://github.com/oceanicwar/OverAchiever
+[submodule "modules/Attriboost"]
+	path = modules/Attriboost
+	url = https://github.com/oceanicwar/Attriboost
+[submodule "modules/MobAnnouncer"]
+	path = modules/MobAnnouncer
+	url = https://github.com/oceanicwar/MobAnnouncer
+[submodule "modules/TrialOfStrength"]
+	path = modules/TrialOfStrength
+	url = https://github.com/oceanicwar/TrialOfStrength

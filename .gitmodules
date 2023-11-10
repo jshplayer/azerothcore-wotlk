@@ -79,3 +79,6 @@
 [submodule "modules/TrialOfStrength"]
 	path = modules/TrialOfStrength
 	url = https://github.com/oceanicwar/TrialOfStrength
+[submodule "modules/mod-cfbg"]
+	path = modules/mod-cfbg
+	url = https://github.com/oceanicwar/mod-cfbg

@@ -708,7 +708,7 @@ void Player::RewardQuest(Quest const* quest, uint32 reward, Object* questGiver, 
 
     if (quest->GetRewItemsCount())
     {
-        for (uint32 i = 0; i < quest->GetRewItemsCount(); ++i)
+        for (uint32 i = 0; i < QUEST_REWARDS_COUNT; ++i)
         {
             if (uint32 itemId = quest->RewardItemId[i])
             {

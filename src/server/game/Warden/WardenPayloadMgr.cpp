@@ -20,8 +20,6 @@
 #include "Log.h"
 #include "StringFormat.h"
 
-#include <algorithm>
-
 WardenPayloadMgr::WardenPayloadMgr() { }
 
 uint16 WardenPayloadMgr::GetFreePayloadId()
@@ -42,7 +40,7 @@ uint16 WardenPayloadMgr::GetFreePayloadId()
     return payloadId;
 }
 
-uint16 WardenPayloadMgr::RegisterPayload(std::string const& payload)
+uint16 WardenPayloadMgr::RegisterPayload(const std::string& payload)
 {
     uint16 payloadId = GetFreePayloadId();
 
@@ -149,64 +147,4 @@ uint32 WardenPayloadMgr::GetPayloadCountInQueue()
 std::list<uint16>* WardenPayloadMgr::GetPayloadsInQueue()
 {
     return &QueuedPayloads;
-}
-
-std::string WardenPayloadMgr::GetCheckListSignature(std::list<uint16>& checkList)
-{
-    std::string sigResult;
-
-    for (uint16 const& checkId : checkList)
-    {
-        sigResult.append(std::to_string(checkId));
-        sigResult.append(";");
-    }
-
-    return sigResult;
-}
-
-bool WardenPayloadMgr::IsInterruptedCheck(std::list<uint16>& checkList, uint32 serverTicks)
-{
-    std::string checkSig = GetCheckListSignature(checkList);
-
-    for (auto const& checkInfo : InterruptedChecks)
-    {
-        if (serverTicks == checkInfo.CheckTime &&
-            checkSig == checkInfo.Signature)
-        {
-            LOG_DEBUG("warden", "IsInterruptedCheck:True");
-            return true;
-        }
-    }
-
-    LOG_DEBUG("warden", "IsInterruptedCheck:False");
-    return false;
-}
-
-void WardenPayloadMgr::CleanOldInterrupts()
-{
-    if (InterruptedChecks.empty())
-    {
-        return;
-    }
-
-    LOG_DEBUG("warden", "Cleaning up old interrupts..");
-
-    auto currentTicks = GameTime::GetGameTimeMS().count();
-    uint32 count = InterruptedChecks.size();
-
-    for (auto it = InterruptedChecks.begin(); it != InterruptedChecks.end();)
-    {
-        uint32 diff = currentTicks - it->CheckTime;
-
-        if (diff > (WardenInterruptCleanTime * IN_MILLISECONDS))
-        {
-            it = InterruptedChecks.erase(it);
-        }
-        else
-        {
-            ++it;
-        }
-    }
-
-    LOG_DEBUG("warden", "Cleaned up '{}' interrupt(s).", count - InterruptedChecks.size());
 }

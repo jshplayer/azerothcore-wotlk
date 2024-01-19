@@ -4940,7 +4940,7 @@ void ObjectMgr::LoadQuests()
                 // no changes, quest ignore this data
             }
         }
-
+/*
         for (uint8 j = 0; j < QUEST_REWARDS_COUNT; ++j)
         {
             if (!qinfo->RewardItemId[0] && qinfo->RewardItemId[j])
@@ -4959,7 +4959,7 @@ void ObjectMgr::LoadQuests()
                                     qinfo->GetQuestId(), j + 1);
             }
         }
-
+*/
         for (uint8 j = 0; j < QUEST_REWARDS_COUNT; ++j)
         {
             uint32 id = qinfo->RewardItemId[j];

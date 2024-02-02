@@ -82,3 +82,6 @@
 [submodule "modules/mod-cfbg"]
 	path = modules/mod-cfbg
 	url = https://github.com/oceanicwar/mod-cfbg
+[submodule "modules/mod-account-achievements"]
+	path = modules/mod-account-achievements
+	url = https://github.com/oceanicwar/mod-account-achievements

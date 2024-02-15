@@ -85,3 +85,6 @@
 [submodule "modules/mod-account-achievements"]
 	path = modules/mod-account-achievements
 	url = https://github.com/oceanicwar/mod-account-achievements
+[submodule "modules/WeeklyRewards"]
+	path = modules/WeeklyRewards
+	url = https://github.com/oceanicwar/WeeklyRewards

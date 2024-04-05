@@ -88,3 +88,6 @@
 [submodule "modules/WeeklyRewards"]
 	path = modules/WeeklyRewards
 	url = https://github.com/oceanicwar/WeeklyRewards
+[submodule "modules/Prestigious"]
+	path = modules/Prestigious
+	url = https://github.com/oceanicwar/Prestigious

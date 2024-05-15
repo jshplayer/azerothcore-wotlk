@@ -94,3 +94,6 @@
 [submodule "modules/ExtendedXP"]
 	path = modules/ExtendedXP
 	url = https://github.com/oceanicwar/ExtendedXP
+[submodule "modules/mod-eluna"]
+	path = modules/mod-eluna
+	url = https://github.com/oceanicwar/mod-eluna

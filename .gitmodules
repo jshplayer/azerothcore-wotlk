@@ -97,3 +97,6 @@
 [submodule "modules/mod-eluna"]
 	path = modules/mod-eluna
 	url = https://github.com/oceanicwar/mod-eluna
+[submodule "modules/ButWhy"]
+	path = modules/ButWhy
+	url = https://github.com/oceanicwar/ButWhy
